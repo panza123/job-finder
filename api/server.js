@@ -32,12 +32,17 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
     });
 }
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 
 // Start server
 connectDB()
     .then(() => {
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
+            
         });
     })
     .catch((error) => {
