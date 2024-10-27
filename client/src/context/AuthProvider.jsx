@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axiosInstance.get('/profile'); // Await the API response
+        const res = await axiosInstance.get('/users/profile'); // Await the API response
         setUser(res.data); // Set the user data from response
         
       } catch (err) {

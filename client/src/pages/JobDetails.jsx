@@ -11,7 +11,7 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const res = await axiosInstance.get(`/jobs/${id}`);
+        const res = await axiosInstance.get(`jobs/jobs/${id}`);
         setJob(res.data.job); 
       } catch (err) {
         toast.error('Failed to fetch job details');

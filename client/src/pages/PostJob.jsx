@@ -40,7 +40,7 @@ const PostJob = () => {
     console.log("Form Data:", data);
 
     try {
-      const res = await axiosInstance.post('/job', data);
+      const res = await axiosInstance.post('jobs/job', data);
       console.log(res);
       toast.success("Job posted successfully");
       navigate('/'); // Redirect on success

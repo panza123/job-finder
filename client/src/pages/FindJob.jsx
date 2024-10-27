@@ -10,7 +10,7 @@ const FindJob = () => {
 
   useEffect(() => {
     setLoading(true);
-    axiosInstance.get('/jobs')
+    axiosInstance.get('/jobs/jobs')
       .then((res) => {
         console.log(res.data.jobs);
         setJobs(res.data.jobs);

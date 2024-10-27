@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     setLoading(true); 
     try {
-      const res = await axiosInstance.post('/login', { email, password });
+      const res = await axiosInstance.post('/users/login', { email, password });
       setUser(res.data); // Set the user in context after successful login
       setLoading(false); 
       navigate('/');

@@ -12,7 +12,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axiosInstance.get('/fetch');
+        const res = await axiosInstance.get('/jobs/fetch');
         setJobs(res.data.jobs);
         
       } catch (error) {

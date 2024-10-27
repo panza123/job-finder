@@ -20,7 +20,7 @@ const EditPage = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const res = await axiosInstance.get(`/jobs/${id}`);
+        const res = await axiosInstance.get(`jobs/jobs/${id}`);
         setTitle(res.data.job.title);
         setName(res.data.job.name);
         setDescription(res.data.job.description);
@@ -60,7 +60,7 @@ const EditPage = () => {
     };
 
     try {
-      const res = await axiosInstance.put(`/edit-job/${id}`, data, {
+      const res = await axiosInstance.put(`/jobs/edit-job/${id}`, data, {
         headers: { 'Content-Type': 'application/json' },
       });
       toast.success("Job edited successfully");

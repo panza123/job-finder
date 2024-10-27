@@ -11,6 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
 
 // CORS configuration
 app.use(cors({
@@ -23,18 +24,19 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Use routers for user and job routes
-app.use('/api', userRouter); // It's a good practice to namespace routes
-app.use('/api', jobRouter);
+app.use('/api/users', userRouter);  // It's more RESTful to separate user routes
+app.use('/api/jobs', jobRouter);     // Same for job routes
 
 // Serve static files from the 'uploads/' directory
 app.use('/uploads', express.static(path.resolve('uploads')));
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(process.cwd(), 'client/dist')));
+    app.use(express.static(path.join(__dirname, 'client/dist')));
 
+    // Ensure to use 'req' and 'res' correctly
     app.get("*", (req, res) => {
-        res.sendFile(path.join(process.cwd(), "client", "dist", "index.html"));
+        res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
     });
 }
 

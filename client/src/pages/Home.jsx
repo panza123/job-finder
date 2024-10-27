@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    axiosInstance.get('/jobs')
+    axiosInstance.get('/jobs/jobs')
       .then((res) => {
         if (res.data && res.data.jobs) {
           setJobs(res.data.jobs);
