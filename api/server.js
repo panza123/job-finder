@@ -19,28 +19,25 @@ app.use(cors({
 }));
 
 // Middleware to parse JSON and cookies
-
 app.use(express.json());
-
 app.use(cookieParser());
 
 // Use routers for user and job routes
-app.use('/', userRouter);
-app.use('/', jobRouter);
+app.use('/api', userRouter); // It's a good practice to namespace routes
+app.use('/api', jobRouter);
 
 // Serve static files from the 'uploads/' directory
 app.use('/uploads', express.static(path.resolve('uploads')));
 
-//server static file in production
-if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, 'client/dist')));
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(process.cwd(), 'client/dist')));
 
-    app.get("*",(res)=>{
-    res.sendFile(path.join(__dirname, "client", "dist" ,"index.html"))
-
-    })
-
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(process.cwd(), "client", "dist", "index.html"));
+    });
 }
+
 // Connect to the database and start the server
 connectDB()
     .then(() => {

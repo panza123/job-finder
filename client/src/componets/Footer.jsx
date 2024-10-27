@@ -14,10 +14,10 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div className="flex space-x-6">
-          {navBar.map((nav) => (
+          {navBar.map((nav,index) => (
             <Link
               to={nav.link}
-              key={nav.id}
+              key={index}
               className="text-white hover:underline"
             >
               {nav.name}
